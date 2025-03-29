@@ -1,0 +1,8 @@
+# Sensible data
+.env
+
+# Dependencies
+node_modules
+
+# Editor/IDE settings
+.idea/
