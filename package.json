@@ -1,5 +1,11 @@
 {
   "name": "local-server",
   "version": "0.0.0",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "check": "biome check --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4"
+  }
 }
