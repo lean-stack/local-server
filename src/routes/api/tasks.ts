@@ -1,13 +1,52 @@
+import { eq } from 'drizzle-orm';
 import { Hono } from 'hono';
+
+import { db } from '../../db';
+import { tasks } from '../../db/schema';
 
 const task = new Hono();
 
 task
-  .get('/', (c) => c.json([]))
-  .post('/', (c) => c.json({}, 201))
-  .get('/:id', (c) => c.json({}))
-  .put('/:id', (c) => c.json({}))
-  .patch('/:id', (c) => c.json({}))
-  .delete('/:id', (c) => c.body(null, 204));
+  .get('/', async (c) => {
+    const tasks = await db.query.tasks.findMany();
+    return c.json(tasks);
+  })
+  .post('/', async (c) => {
+    const data = await c.req.json();
+    const task = await db.insert(tasks).values(data).returning();
+    return c.json(task, 201);
+  })
+  .get('/:id', async (c) => {
+    const { id } = c.req.param();
+    const task = await db.query.tasks.findFirst({
+      where: eq(tasks.id, Number(id)),
+    });
+    return c.json(task);
+  })
+  .put('/:id', async (c) => {
+    const { id } = c.req.param();
+    const data = await c.req.json();
+    const task = await db
+      .update(tasks)
+      .set(data)
+      .where(eq(tasks.id, Number(id)))
+      .returning();
+    return c.json(task);
+  })
+  .patch('/:id', async (c) => {
+    const { id } = c.req.param();
+    const data = await c.req.json();
+    const task = await db
+      .update(tasks)
+      .set(data)
+      .where(eq(tasks.id, Number(id)))
+      .returning();
+    return c.json(task);
+  })
+  .delete('/:id', async (c) => {
+    const { id } = c.req.param();
+    await db.delete(tasks).where(eq(tasks.id, Number(id)));
+    return c.body(null, 204);
+  });
 
 export { task as tasksRoutes };
