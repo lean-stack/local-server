@@ -1,6 +1,8 @@
 import { Hono } from 'hono';
+import { apiRoutes } from './routes/api';
 
 const app = new Hono();
-app.get('/', (c) => c.text('Hello from Server'));
+
+app.route('/api', apiRoutes);
 
 export { app };
