@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.14.0",
-    "@libsql/client": "^0.15.1",
-    "drizzle-orm": "^0.41.0",
+    "@libsql/client": "^0.17.0",
+    "drizzle-orm": "^0.45.1",
     "hono": "^4.7.5",
     "valibot": "^1.0.0"
   },
@@ -17,7 +17,7 @@
     "@biomejs/biome": "2.4.6",
     "@types/node": "^22.13.14",
     "dotenv": "^17.3.1",
-    "drizzle-kit": "^0.30.6",
+    "drizzle-kit": "^0.31.9",
     "tsx": "^4.19.3"
   }
 }
