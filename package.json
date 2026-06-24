@@ -7,17 +7,17 @@
     "check": "biome check --write ."
   },
   "dependencies": {
-    "@hono/node-server": "^1.14.0",
-    "@libsql/client": "^0.17.0",
-    "drizzle-orm": "^0.45.1",
-    "hono": "^4.7.5",
-    "valibot": "^1.0.0"
+    "@hono/node-server": "^2.0.6",
+    "@libsql/client": "^0.17.4",
+    "drizzle-orm": "^1.0.0-rc.3",
+    "hono": "^4.12.27",
+    "valibot": "^1.4.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.6",
-    "@types/node": "^22.13.14",
-    "dotenv": "^17.3.1",
-    "drizzle-kit": "^0.31.9",
-    "tsx": "^4.19.3"
+    "@biomejs/biome": "2.5.1",
+    "@types/node": "^24.13.2",
+    "dotenv": "^17.4.2",
+    "drizzle-kit": "^1.0.0-rc.3",
+    "tsx": "^4.22.4"
   }
 }

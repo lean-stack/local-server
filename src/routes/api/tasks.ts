@@ -8,8 +8,8 @@ const task = new Hono();
 
 task
   .get('/', async (c) => {
-    const tasks = await db.query.tasks.findMany();
-    return c.json(tasks);
+    const result = await db.select().from(tasks);
+    return c.json(result);
   })
   .post('/', async (c) => {
     const data = await c.req.json();
@@ -18,9 +18,7 @@ task
   })
   .get('/:id', async (c) => {
     const { id } = c.req.param();
-    const task = await db.query.tasks.findFirst({
-      where: eq(tasks.id, Number(id)),
-    });
+    const [task] = await db.select().from(tasks).where(eq(tasks.id, Number(id)));
     return c.json(task);
   })
   .put('/:id', async (c) => {
